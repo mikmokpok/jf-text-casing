@@ -1,7 +1,7 @@
 JFCustomWidgetUtils.domReady(function () {
   class LowerCase {
     params;
-    input = document.querySelector("#lowercase");
+    input = document.querySelector("#formatted");
     messageEl = document.querySelector("#message");
     fieldObj;
     tarVal;
@@ -17,7 +17,7 @@ JFCustomWidgetUtils.domReady(function () {
     }
     updateValue = async () => {
       this.fieldObj = await this.getFields();
-      if(this.fieldObj.data[0].type){
+      if (this.fieldObj.data[0].type) {
         switch (this.params.format) {
           case "Lowercase":
             this.tarVal = this.fieldObj.data[0].value.toLowerCase();
@@ -35,14 +35,14 @@ JFCustomWidgetUtils.domReady(function () {
           value: this.tarVal,
         });
         return this.tarVal;
-      }else{
-        this.showError('Invalid source field ID.');
+      } else {
+        this.showError("Invalid source field ID.");
       }
     };
     getFields = () => {
       return new Promise((resolve, reject) => {
         JFCustomWidget.getFieldsValueById(
-          [this.params.srcId.split("_")[1] || 'error'],
+          [this.params.srcId.split("_")[1] || "error"],
           (n) => resolve(n)
         );
       });
